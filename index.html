@@ -30,8 +30,7 @@ h1,h2,h3,h4{font-family:var(--serif);line-height:1.15;color:var(--navy)}
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
 .ic{width:1.3em;height:1.3em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-
-.draft{background:#071f40;color:#fff;font-size:.82rem;text-align:center;padding:8px 14px;line-height:1.4}
+ .draft{background:#071f40;color:#fff;font-size:.82rem;text-align:center;padding:8px 14px;line-height:1.4}
 .draft b{color:var(--gold)}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid transparent;font-size:1rem;cursor:pointer;font-family:var(--sans);transition:background .2s,color .2s,border-color .2s,transform .2s;line-height:1.2}
@@ -121,6 +120,7 @@ h2{font-size:clamp(1.8rem,5.5vw,2.7rem);margin-bottom:12px}
 .tag{border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:9px 16px;font:inherit;font-size:.92rem;font-weight:600;color:#fff;background:transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .tag:hover{background:rgba(255,255,255,.18)}
 .tag[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#201700}
+
 .teaser-gal{background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.25));border:1px solid var(--line);border-radius:22px;padding:32px 24px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
 .teaser-gal h2{margin-bottom:6px}
 .teaser-gal p{color:var(--muted);max-width:520px}
@@ -134,7 +134,7 @@ h2{font-size:clamp(1.8rem,5.5vw,2.7rem);margin-bottom:12px}
 .note{margin-top:14px;color:var(--muted);font-size:.93rem;max-width:560px}
 mark{background:#fff1b8;color:#4a3a00;padding:0 4px;border-radius:4px}
 mark.m{font-size:.75rem;font-weight:600;margin-left:6px}
-.sec-rev{background:linear-gradient(180deg,rgba(196,86,47,.1),rgba(212,168,74,.14))}
+ .sec-rev{background:linear-gradient(180deg,rgba(196,86,47,.1),rgba(212,168,74,.14))}
 .revgrid{display:grid;gap:30px;align-items:start}
 .rvform{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:0 10px 30px rgba(90,60,20,.1)}
 .rvform fieldset{border:0;margin-bottom:14px}
@@ -152,7 +152,8 @@ mark.m{font-size:.75rem;font-weight:600;margin-left:6px}
 .rvmsg.err{color:#a3261d}
 .rvmsg.ok{color:#2f6b2a}
 .rvnote{font-size:.85rem;color:var(--muted);margin-top:8px}
- .sec-contact{background:linear-gradient(180deg,rgba(232,241,251,.85),rgba(232,241,251,.45))}
+
+.sec-contact{background:linear-gradient(180deg,rgba(232,241,251,.85),rgba(232,241,251,.45))}
 .cgrid{display:grid;gap:28px}
 .clist{list-style:none}
 .clist li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:flex-start}
@@ -185,8 +186,7 @@ footer p{margin-bottom:8px}
 #drawer h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#f2cf7a;margin:20px 0 4px}
 .x{background:rgba(255,255,255,.14);border:0;width:40px;height:40px;border-radius:50%;font-size:1.7rem;line-height:1;color:#fff;cursor:pointer;flex-shrink:0}
 .x:hover{background:rgba(255,255,255,.3)}
-
-dialog{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;border-radius:0;color:var(--ink)}
+ dialog{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;border-radius:0;color:var(--ink)}
 dialog::backdrop{background:rgba(5,20,45,.75);backdrop-filter:blur(3px)}
 dialog[open]{display:flex;flex-direction:column;animation:pop .28s ease}
 @keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -296,6 +296,7 @@ dialog[open]{display:flex;flex-direction:column;animation:pop .28s ease}
 <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6M9 11h6"/></symbol>
 <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
 </svg>
+
 <div class="draft"><b>BEISPIELENTWURF</b> · keine offizielle Seite von Bei Stavros · Texte und Fotos werden gemeinsam abgestimmt</div>
 
 <header>
@@ -313,7 +314,6 @@ dialog[open]{display:flex;flex-direction:column;animation:pop .28s ease}
 <a class="btn terra sm" href="tel:+4952099192683" aria-label="Essen zum Mitnehmen bestellen: jetzt anrufen"><svg class="ic"><use href="#i-bag"/></svg>Bestellen</a>
 </div>
 </header>
-
 <div id="drawerbg"></div>
 <aside id="drawer" aria-label="Menü">
 <div class="dh"><b>Bei Stavros</b><button class="x" id="drawerx" type="button" aria-label="Menü schließen">×</button></div>
@@ -347,6 +347,14 @@ dialog[open]{display:flex;flex-direction:column;animation:pop .28s ease}
 </div>
 <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40C240 80 480 0 720 30s480 50 720 10V70H0z"/></svg>
 </div>
+
+<div class="facts"><div class="wrap fgrid">
+<div class="fact rv"><svg class="ic"><use href="#i-clock"/></svg><div><b>Di–Sa ab 17 Uhr</b><span>Sonn- und Feiertage ab 11:30 Uhr</span></div></div>
+<div class="fact rv"><svg class="ic"><use href="#i-bag"/></svg><div><b>Zum Mitnehmen</b><span>Anrufen, bestellen, abholen</span></div></div>
+<div class="fact rv"><svg class="ic"><use href="#i-park"/></svg><div><b>Kostenlos parken</b><span>Vor und hinter dem Restaurant</span></div></div>
+<div class="fact rv"><svg class="ic"><use href="#i-bus"/></svg><div><b>Bus 94 und 201</b><span>Halten direkt vor der Haustür</span></div></div>
+</div></div>
+
 <section>
 <div class="wrap">
 <div class="kicker">Das erwartet Sie</div>
@@ -417,7 +425,6 @@ dialog[open]{display:flex;flex-direction:column;animation:pop .28s ease}
 </div>
 </div>
 </section>
-
 <section>
 <div class="wrap">
 <div class="teaser-gal rv">
@@ -513,11 +520,13 @@ dialog[open]{display:flex;flex-direction:column;animation:pop .28s ease}
 <p><button class="lnk" type="button" data-open="menu">Speisekarte</button><button class="lnk" type="button" data-open="gal">Galerie</button><button class="lnk" type="button" data-open="imp">Impressum</button><button class="lnk" type="button" data-open="dat">Datenschutz</button></p>
 </div>
 </footer>
+
 <div class="mbar">
 <button class="btn blue" type="button" data-open="menu"><svg class="ic"><use href="#i-book"/></svg>Karte</button>
 <a class="btn terra" href="tel:+4952099192683"><svg class="ic"><use href="#i-phone"/></svg>Anrufen</a>
 <a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-pin"/></svg>Route</a>
 </div>
+
 <dialog id="d-menu" class="ov ov-menu" aria-labelledby="menu-title">
 <div class="mtop">
 <div class="mbar2">
@@ -629,7 +638,8 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 var root=document.documentElement;
 var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 var NOTE='Zu allen Gerichten reichen wir wahlweise Reis, Pommes, Kartoffelgratin oder griechische Ofenkartoffeln, dazu frischer Salat und Tzatziki.';
- /* ===== Speisekarte: [Nummer, Name, Beschreibung, Preis, Preis prüfen] ===== */
+
+/* ===== Speisekarte: [Nummer, Name, Beschreibung, Preis, Preis prüfen] ===== */
 var M=[
 {id:'angebote',t:'Angebote',a:'gold',i:[
 ['','Sonderangebot: Empfehlung unseres Chefkochs Christos','Für 2 Personen und mehr: Mese Vorspeisenplatte, Gyros, Souvlaki, Bifteki und Schweinesteak, Beilagensalat, dazu Reis, Pommes, griechische Ofenkartoffeln oder Kartoffelgratin als Beilage und Dessert. Die Platte kann für 2, 3, 4 und auch mehr Personen angerichtet werden. Eine kleine kulinarische Reise mit unserem Chefkoch.','pro Person=21,00'],
@@ -813,8 +823,7 @@ var M=[
 ['162','Williams Birne','','2,20'],
 ['163','Maracuja Likör','','2,20']]}
 ];
-
-/* ===== Menü: Aufbau ===== */
+ /* ===== Menü: Aufbau ===== */
 function priceHtml(p){
  var parts=p.split('/');
  if(parts.length===1&&p.indexOf('=')<0){return '<div class="pr"><b>'+esc(p)+' €</b></div>'}
@@ -846,7 +855,8 @@ var ids={};M.forEach(function(c,i){ids[c.id]=i});
 var sc=$('#mscroll'),inp=$('#mq'),tog=$('#mtoggle');
 var st=[],q='',allOpen=false,act=-1;
 st[0]=true;
- function apply(){
+
+function apply(){
  var any=false;
  M.forEach(function(c,ci){
   var n=0;
@@ -999,7 +1009,7 @@ rv.addEventListener('submit',function(e){
  rm.classList.add('ok');
  window.location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Rezension: '+n+' von 5 Sternen')+'&body='+encodeURIComponent(body);
 });
-/* ===== Öffnungszeiten: heutigen Tag markieren ===== */
+ /* ===== Öffnungszeiten: heutigen Tag markieren ===== */
 var today=$('#hours [data-d="'+new Date().getDay()+'"]');
 if(today){today.classList.add('today')}
 
