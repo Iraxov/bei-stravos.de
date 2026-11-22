@@ -4,15 +4,19 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src https://www.google.com https://maps.google.com; connect-src 'none'; font-src 'none'; media-src 'none'; manifest-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bei Stavros – Griechisches Restaurant in Friedrichsdorf, Gütersloh</title>
-<meta name="description" content="Bei Stavros in Gütersloh-Friedrichsdorf: griechische Spezialitäten, digitale Speisekarte, Biergarten, Fußballstammtisch und Räume für Feiern bis 60 Personen. Kostenlos parken, Bus 94 und 201 vor der Tür.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bei Stavros – Griechisches Restaurant in Gütersloh</title>
+<meta name="description" content="Griechische Spezialitäten in Gütersloh-Friedrichsdorf: digitale Speisekarte, Biergarten, Stammtisch und Räume für Feiern bis 60 Personen.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0a2d5c">
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Bei Stavros">
+<meta property="og:title" content="Bei Stavros – Griechisches Restaurant in Gütersloh">
+<meta property="og:description" content="Griechische Spezialitäten, Biergarten, Stammtisch und Räume für Feiern bis 60 Personen. Zur Großen Heide 22, Gütersloh-Friedrichsdorf.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a2d5c'/%3E%3Ccircle cx='46' cy='18' r='9' fill='%23d4a84a'/%3E%3Ctext x='32' y='48' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23fff'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Restaurant","name":"Bei Stavros","servesCuisine":"Griechisch","telephone":"+4952099192683","email":"stavros-stamatis@t-online.de","address":{"@type":"PostalAddress","streetAddress":"Zur Großen Heide 22","postalCode":"33335","addressLocality":"Gütersloh","addressCountry":"DE"},"maximumAttendeeCapacity":60,"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:30","closes":"23:00"}]}
+{"@context":"https://schema.org","@type":"Restaurant","name":"Bei Stavros","servesCuisine":"Griechisch","telephone":"+4952099192683","email":"stavros-stamatis@t-online.de","priceRange":"€€","acceptsReservations":"True","address":{"@type":"PostalAddress","streetAddress":"Zur Großen Heide 22","postalCode":"33335","addressLocality":"Gütersloh","addressCountry":"DE"},"maximumAttendeeCapacity":60,"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:30","closes":"23:00"}]}
 </script>
 </head>
 <body>
@@ -48,10 +52,10 @@
 <a href="#bewertung">Rezension</a>
 <a href="#anfahrt">Anfahrt</a>
 </nav>
+<a class="hphone" href="tel:+4952099192683">0 52 09 / 9 19 26 83</a>
 <a class="btn terra sm" href="tel:+4952099192683" aria-label="Essen zum Mitnehmen bestellen: jetzt anrufen"><svg class="ic"><use href="#i-bag"/></svg>Bestellen</a>
 </div>
 </header>
-
 <div id="drawerbg"></div>
 <aside id="drawer" aria-label="Menü">
 <div class="dh"><b>Bei Stavros</b><button class="x" id="drawerx" type="button" aria-label="Menü schließen">×</button></div>
@@ -108,7 +112,6 @@
 </div>
 </div>
 </section>
-
 <section id="karte" class="sec-menu">
 <div class="wrap">
 <div class="kicker">Speisekarte</div>
@@ -141,24 +144,32 @@
 <div class="feier rv">
 <div class="eyebrow">Feiern bei Stavros</div>
 <div aria-live="polite">
-<h2 id="ev-h">Weihnachtsfeier geplant? Jetzt Termin sichern.</h2>
-<p id="ev-t">Bei uns ist Platz für Ihre Weihnachtsfeier, ob mit dem Team, mit Freunden oder der Familie. Bitte reservieren Sie rechtzeitig. Sonderwünsche besprechen wir gern mit Ihnen.</p>
+<h2 id="ev-h">Feier geplant? Fragen Sie uns an.</h2>
+<p id="ev-t">Bei uns ist Platz für Ihre Feier, ob mit dem Team, mit Freunden oder der Familie. Bitte reservieren Sie rechtzeitig. Sonderwünsche besprechen wir gern mit Ihnen.</p>
 </div>
 <div class="cap"><svg class="ic"><use href="#i-party"/></svg>Platz für bis zu 60 Personen</div>
 <div class="tagsl">Anlass wählen</div>
 <div class="tags" role="group" aria-label="Anlass wählen">
-<button type="button" class="tag" data-ev="weihnachten" aria-pressed="true">Weihnachtsfeier</button>
+<button type="button" class="tag" data-ev="weihnachten" aria-pressed="false">Weihnachtsfeier</button>
+<button type="button" class="tag" data-ev="ostern" aria-pressed="false">Ostern</button>
+<button type="button" class="tag" data-ev="muttertag" aria-pressed="false">Muttertag</button>
+<button type="button" class="tag" data-ev="vatertag" aria-pressed="false">Vatertag</button>
 <button type="button" class="tag" data-ev="familie" aria-pressed="false">Familienfeier</button>
+<button type="button" class="tag" data-ev="geburtstag" aria-pressed="false">Geburtstag</button>
+<button type="button" class="tag" data-ev="hochzeit" aria-pressed="false">Hochzeit</button>
+<button type="button" class="tag" data-ev="taufe" aria-pressed="false">Taufe</button>
 <button type="button" class="tag" data-ev="kommunion" aria-pressed="false">Kommunion</button>
 <button type="button" class="tag" data-ev="konfirmation" aria-pressed="false">Konfirmation</button>
-<button type="button" class="tag" data-ev="geburtstag" aria-pressed="false">Geburtstag</button>
+<button type="button" class="tag" data-ev="abschluss" aria-pressed="false">Abschlussfeier</button>
 <button type="button" class="tag" data-ev="jubilaeum" aria-pressed="false">Jubiläum</button>
+<button type="button" class="tag" data-ev="ruhestand" aria-pressed="false">Ruhestand</button>
 <button type="button" class="tag" data-ev="betrieb" aria-pressed="false">Betriebsfest</button>
+<button type="button" class="tag" data-ev="klassentreffen" aria-pressed="false">Klassentreffen</button>
 <button type="button" class="tag" data-ev="trauer" aria-pressed="false">Trauerfeier</button>
 </div>
 <div class="btns">
 <a class="btn gold" href="tel:+4952099192683"><svg class="ic"><use href="#i-phone"/></svg>Jetzt anrufen</a>
-<a class="btn ghost" id="ev-mail" href="mailto:stavros-stamatis@t-online.de?subject=Anfrage%20Weihnachtsfeier"><svg class="ic"><use href="#i-mail"/></svg>Anfrage per E-Mail</a>
+<a class="btn ghost" id="ev-mail" href="mailto:stavros-stamatis@t-online.de?subject=Anfrage%20Feier"><svg class="ic"><use href="#i-mail"/></svg>Anfrage per E-Mail</a>
 </div>
 </div>
 </div>
@@ -204,13 +215,13 @@
 <div class="rvbox rv">
 <span class="fl">Ihre Bewertung</span>
 <div class="starlinks">
-<a class="star" href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">5 Sterne bei Google</span>★</a>
-<a class="star" href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">4 Sterne bei Google</span>★</a>
-<a class="star" href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">3 Sterne bei Google</span>★</a>
-<a class="star" href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">2 Sterne bei Google</span>★</a>
-<a class="star" href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">1 Stern bei Google</span>★</a>
+<a class="star" data-review href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">5 Sterne bei Google</span>★</a>
+<a class="star" data-review href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">4 Sterne bei Google</span>★</a>
+<a class="star" data-review href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">3 Sterne bei Google</span>★</a>
+<a class="star" data-review href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">2 Sterne bei Google</span>★</a>
+<a class="star" data-review href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><span class="sr">1 Stern bei Google</span>★</a>
 </div>
-<a class="btn terra" href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-pin"/></svg>Jetzt bei Google bewerten</a>
+<a class="btn terra" data-review href="https://www.google.com/maps/search/?api=1&amp;query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-pin"/></svg>Jetzt bei Google bewerten</a>
 <p class="rvnote">Sie werden zu Google weitergeleitet und bewerten dort öffentlich. Dafür brauchen Sie ein Google-Konto.</p>
 </div>
 </div>
@@ -235,7 +246,7 @@
 </div>
 </div>
 <div id="mapbox">
-<span>Die Karte wird erst nach Ihrem Klick geladen. Dabei werden Daten an Google übertragen.</span>
+<span>Die Karte wird erst nach Ihrer Zustimmung geladen. Dabei werden Daten an Google übertragen.</span>
 <button class="btn blue sm" id="loadmap" type="button">Karte laden</button>
 </div>
 </div>
@@ -243,20 +254,26 @@
 </section>
 
 </main>
-
 <footer>
 <div class="mea b"></div>
 <div class="wrap">
 <p><b>Bei Stavros</b> · Zur Großen Heide 22 · 33335 Gütersloh</p>
 <p>Beispielentwurf einer neuen Website, keine offizielle Seite.</p>
-<p><button class="lnk" type="button" data-open="menu">Speisekarte</button><button class="lnk" type="button" data-open="gal">Galerie</button><button class="lnk" type="button" data-open="imp">Impressum</button><button class="lnk" type="button" data-open="dat">Datenschutz</button></p>
-</div>
+<p><button class="lnk" type="button" data-open="menu">Speisekarte</button><button class="lnk" type="button" data-open="gal">Galerie</button><button class="lnk" type="button" data-open="imp">Impressum</button><button class="lnk" type="button" data-open="dat">Datenschutz</button><button class="lnk" type="button" id="c-open">Karten-Einstellung</button></p></div>
 </footer>
 
 <div class="mbar">
 <button class="btn blue" type="button" data-open="menu"><svg class="ic"><use href="#i-book"/></svg>Karte</button>
 <a class="btn terra" href="tel:+4952099192683"><svg class="ic"><use href="#i-phone"/></svg>Anrufen</a>
 <a class="btn line" href="https://www.google.com/maps/search/?api=1&amp;query=Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-pin"/></svg>Route</a>
+</div>
+
+<div class="consent" id="consent" role="region" aria-label="Einwilligung Google Maps" hidden>
+<div class="ctext"><b>Google Maps einbinden?</b><p>Für die Karte stellen wir eine Verbindung zu Google her. Dabei können Daten wie Ihre IP-Adresse übertragen werden. Ohne Zustimmung bleibt die Karte aus, Telefon und Route funktionieren trotzdem. Mehr dazu im <button class="lnk" type="button" data-open="dat">Datenschutz</button>.</p></div>
+<div class="cbtns">
+<button class="btn blue sm" id="c-yes" type="button">Karte erlauben</button>
+<button class="btn line sm" id="c-no" type="button">Ablehnen</button>
+</div>
 </div>
 
 <dialog id="d-menu" class="ov ov-menu" aria-labelledby="menu-title">
@@ -280,6 +297,7 @@
 <div class="mscroll" id="mscroll">
 <div class="mpad">
 <div class="mhero"><p>Frisch zubereitet, griechisch und mehr.</p></div>
+<p class="mwst">Alle Preise in Euro, inklusive Mehrwertsteuer.</p>
 <div class="takeaway">
 <div><b>Zum Mitnehmen</b><span>Telefonisch bestellen und abholen: 0 52 09 / 9 19 26 83</span></div>
 <a class="btn gold sm" href="tel:+4952099192683"><svg class="ic"><use href="#i-phone"/></svg>Jetzt anrufen</a>
@@ -353,10 +371,10 @@
 <p>Beim Aufruf dieser Seite verarbeitet der Hosting-Anbieter technisch notwendige Daten wie die IP-Adresse. <mark>[Hosting-Anbieter eintragen]</mark></p>
 <h4>Cookies und Tracking</h4>
 <p>Diese Seite setzt selbst keine Cookies, nutzt kein Tracking und lädt keine Skripte oder Schriftarten von Dritten.</p>
-<h4>Google Maps</h4>
-<p>Die Karte wird erst nach Ihrem Klick auf „Karte laden“ eingebunden. Dann wird eine Verbindung zu Google hergestellt, und Daten wie Ihre IP-Adresse können an Google übertragen werden. Ohne Klick findet das nicht statt.</p>
+<h4>Google Maps und Ihre Auswahl</h4>
+<p>Die Karte wird nur geladen, wenn Sie auf „Karte erlauben“ oder „Karte laden“ klicken. Dann wird eine Verbindung zu Google hergestellt, und Daten wie Ihre IP-Adresse können an Google übertragen werden. Ohne Ihre Zustimmung findet das nicht statt. Ihre Auswahl speichert Ihr Browser nur lokal auf Ihrem Gerät (Local Storage), damit wir Sie nicht bei jedem Besuch erneut fragen. Sie wird nicht an uns übertragen. Über „Karten-Einstellung“ im Seitenende können Sie Ihre Wahl jederzeit ändern. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
 <h4>Google-Rezension</h4>
-<p>Der Button „Jetzt bei Google bewerten“ ist ein normaler Link. Erst wenn Sie ihn anklicken, verlassen Sie diese Seite und gelangen zu Google. Dort gelten die Datenschutzbestimmungen von Google. Ihre Bewertung ist dort öffentlich sichtbar. Diese Seite selbst erhält und speichert keine Bewertungen.</p>
+<p>Die Sterne und der Button „Jetzt bei Google bewerten“ sind normale Links. Erst wenn Sie sie anklicken, verlassen Sie diese Seite und gelangen zu Google. Dort gelten die Datenschutzbestimmungen von Google. Ihre Bewertung ist dort öffentlich sichtbar. Diese Seite selbst erhält und speichert keine Bewertungen.</p>
 <h4>Anfrage per E-Mail</h4>
 <p>Der Button „Anfrage per E-Mail“ sendet selbst keine Daten. Er öffnet nur Ihr E-Mail-Programm mit einem vorbereiteten Text. Erst wenn Sie die E-Mail abschicken, erhalten wir Ihre Angaben und verarbeiten sie nur, um Ihre Anfrage zu beantworten.</p>
 <h4>Kontakt per Telefon</h4>
