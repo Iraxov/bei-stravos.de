@@ -411,7 +411,8 @@ if(today){today.classList.add('today')}
 var RV='https://www.google.com/maps/search/?api=1&query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh';
 if(PLACE_ID){RV='https://search.google.com/local/writereview?placeid='+encodeURIComponent(PLACE_ID)}
 $$('[data-review]').forEach(function(a){a.href=RV});
-  /* ===== Google-Karte: nur mit Einwilligung ===== */
+
+/* ===== Google-Karte: nur mit Einwilligung ===== */
 var CKEY='stavros_karte';
 var mb=$('#mapbox'),mapIdle=mb.innerHTML,cbox=$('#consent');
 function getC(){try{return localStorage.getItem(CKEY)}catch(e){return null}}
