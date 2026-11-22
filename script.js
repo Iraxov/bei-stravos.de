@@ -2,6 +2,8 @@
 'use strict';
 document.documentElement.className+=' js';
 var MAIL='stavros-stamatis@t-online.de';
+/* Google-Rezension: Place ID hier eintragen (aus dem Google-Unternehmensprofil). Solange leer, führt der Link auf die Google-Maps-Seite des Restaurants. */
+var PLACE_ID='';
 function $(s,r){return (r||document).querySelector(s)}
 function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -20,12 +22,12 @@ var M=[
 ['3','Gulaschsuppe','','5,00'],
 ['4','Tomatencremesuppe','','5,00'],
 ['5','Tzatziki','Griechische Joghurtspezialität mit Gurken und Knoblauch','5,00'],
-['6','Taramas','Fischrogencreme, der Kaviar der Griechen','6,00'],
-['7','Skordaklia','Kartoffel-Knoblauchpüree','6,00'],
+['6','Tarama','Fischrogencreme, der Kaviar der Griechen','6,00'],
+['7','Skordalia','Kartoffel-Knoblauchpüree','6,00'],
 ['8','Chtipiti, Tyrokafteri','Creme aus Schafskäse und Chilischoten (scharf)','6,00'],
 ['9','Dolmadakia','Weinblätter gefüllt mit Reis und Hackfleisch','6,00'],
 ['10','Schwarze Oliven und milde Peperoni','','5,00'],
-['11','Mese-Teller für 2 Personen (kalt und warm)','Chtipiti, Skordalia, Tzatziki, Dolmadaki, gegrillte Paprika, Florinis, Keftadakia aus der Pfanne (Hackfleischbällchen), Tyrpita aus dem Backofen (Schafskäseblätterteigtasche) und panierte Zucchini','15,00'],
+['11','Mese-Teller für 2 Personen (kalt und warm)','Chtipiti, Skordalia, Tzatziki, Dolmadakia, gegrillte Paprika, Florinis, Keftadakia aus der Pfanne (Hackfleischbällchen), Tyrpita aus dem Backofen (Schafskäseblätterteigtasche) und panierte Zucchini','15,00'],
 ['12','Peperoni vom Grill','in Knoblauchöl','8,00']]},
 {id:'kaese',t:'Käsespezialitäten',a:'olive',i:[
 ['13','Feta','original griechischer Schafskäse mit Oregano garniert und Olivenöl','7,50'],
@@ -49,7 +51,7 @@ var M=[
 ['27a','Christos Spezial: Schweinefilet von Mykonos','mit Sauce Hollandaise','19,50']]},
 {id:'lamm',t:'Grillspezialitäten vom Lamm',a:'terra',note:NOTE,i:[
 ['28','2 Lammspieße','','19,50'],
-['29','Lammkotletts 5 (Paidakia)','','18,50'],
+['29','Lammkoteletts 5 (Paidakia)','','18,50'],
 ['30','Lammteller','2 Lammkoteletts, ein großer Lammspieß und Lammragout','20,50'],
 ['30a','Lammfleisch','mit Kritharaki (griechische Nudeln mit Käse überbacken)','17,50'],
 ['30b','Lammfleisch','mit grünen Bohnen (keine Beilage)','17,50'],
@@ -295,7 +297,7 @@ tog.addEventListener('click',function(){
  apply();
 });
 apply();
-  
+
 /* ===== Kopfbereich der Karte einklappen: nur Kategorieleiste bleibt ===== */
 var mtop=$('#mtop'),mhead=$('#mhead'),fold=$('#mfold'),foldx=$('#mfoldx');
 function setFold(on){
@@ -309,20 +311,45 @@ function setFold(on){
 fold.addEventListener('click',function(){setFold(!mhead.hidden)});
 setFold(false);
 
-/* ===== Overlays ===== */
+/* ===== Seitenmenü ===== */
+var drawer=$('#drawer'),bg=$('#drawerbg'),burger=$('#burger'),dx=$('#drawerx');
+function setMenu(o){
+ var was=drawer.classList.contains('on');
+ drawer.classList.toggle('on',o);
+ bg.classList.toggle('on',o);
+ burger.setAttribute('aria-expanded',o?'true':'false');
+ if(o&&!was){dx.focus({preventScroll:true})}
+ else if(!o&&was){burger.focus({preventScroll:true})}
+}
+burger.addEventListener('click',function(){setMenu(!drawer.classList.contains('on'))});
+bg.addEventListener('click',function(){setMenu(false)});
+dx.addEventListener('click',function(){setMenu(false)});
+drawer.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+/* ===== Overlays (mit Zurück-Taste) ===== */
 var dl={menu:$('#d-menu'),gal:$('#d-gal'),imp:$('#d-imp'),dat:$('#d-dat')};
+var HASH={menu:'speisekarte',gal:'galerie',imp:'impressum',dat:'datenschutz'};
 function anyOpen(){return Object.keys(dl).some(function(k){return dl[k].open})}
-function openDlg(k){
+function openDlg(k,quiet){
  setMenu(false);
  var d=dl[k];if(!d||d.open)return;
  if(typeof d.showModal==='function'){d.showModal()}else{d.setAttribute('open','')}
  root.classList.add('lock');
+ if(!quiet){try{history.pushState({dlg:k},'','#'+HASH[k])}catch(e){}}
  if(k==='menu'){setFold(false);spy()}
 }
 Object.keys(dl).forEach(function(k){
  var d=dl[k];
- d.addEventListener('close',function(){if(!anyOpen())root.classList.remove('lock')});
+ d.addEventListener('close',function(){
+  if(anyOpen())return;
+  root.classList.remove('lock');
+  if(history.state&&history.state.dlg){history.back()}
+ });
  d.addEventListener('click',function(e){if(e.target===d)d.close()});
+});
+window.addEventListener('popstate',function(){
+ Object.keys(dl).forEach(function(k){if(dl[k].open)dl[k].close()});
 });
 document.addEventListener('click',function(e){
  var t=e.target.closest('[data-open]');
@@ -336,29 +363,23 @@ document.addEventListener('click',function(e){
  var x=e.target.closest('[data-close]');
  if(x){var d=x.closest('dialog');if(d)d.close()}
 });
-
-/* ===== Seitenmenü ===== */
-var drawer=$('#drawer'),bg=$('#drawerbg'),burger=$('#burger');
-function setMenu(o){
- drawer.classList.toggle('on',o);
- bg.classList.toggle('on',o);
- burger.setAttribute('aria-expanded',o?'true':'false');
-}
-burger.addEventListener('click',function(){setMenu(!drawer.classList.contains('on'))});
-bg.addEventListener('click',function(){setMenu(false)});
-$('#drawerx').addEventListener('click',function(){setMenu(false)});
-drawer.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
-
-/* ===== Feier-Kasten ===== */
+  /* ===== Feier-Kasten ===== */
 var EV={
  weihnachten:{n:'eine Weihnachtsfeier',s:'Anfrage Weihnachtsfeier',h:'Weihnachtsfeier geplant? Jetzt Termin sichern.',t:'Bei uns ist Platz für Ihre Weihnachtsfeier, ob mit dem Team, mit Freunden oder der Familie. Bitte reservieren Sie rechtzeitig. Sonderwünsche besprechen wir gern mit Ihnen.',b:'Wir feiern im Kreis von Kollegen, Freunden oder Familie und freuen uns auf einen schönen Abend. Über Ihre Vorschläge für Essen und Ablauf sprechen wir gern.'},
- familie:{n:'eine Familienfeier',s:'Anfrage Familienfeier',h:'Familienfeier geplant? Wir richten sie aus.',t:'Ob Wiedersehen, Zusammenkommen oder ein besonderer Tag: Wir richten die Räume nach Ihren Vorstellungen her und besprechen alle Wünsche persönlich mit Ihnen.',b:'Wir würden die Räume gern nach unseren Vorstellungen hergerichtet haben und besprechen Wünsche zum Essen gern persönlich.'},
+ ostern:{n:'ein Osteressen',s:'Anfrage Osteressen',h:'Osteressen geplant? Reservieren Sie früh.',t:'Ostern am gedeckten Tisch: Wir haben Platz für Ihr Osteressen mit der ganzen Familie. Die Feiertage sind schnell vergeben, bitte reservieren Sie rechtzeitig. Zeiten und Wünsche besprechen wir gern persönlich.',b:'Wir würden gern an den Ostertagen mit der Familie bei Ihnen essen und freuen uns über Ihre Vorschläge zu Essen und Ablauf.'},
+ muttertag:{n:'ein Muttertagsessen',s:'Anfrage Muttertag',h:'Muttertag geplant? Laden Sie Ihre Mutter ein.',t:'Einmal nicht kochen müssen: Wir haben Platz für Ihr Muttertagsessen im Kreis der Familie. Der Tag ist schnell ausgebucht, bitte reservieren Sie rechtzeitig.',b:'Wir möchten am Muttertag mit der Familie bei Ihnen essen und bitten um einen Tisch in passender Größe.'},
+ vatertag:{n:'eine Vatertagsfeier',s:'Anfrage Vatertag',h:'Vatertag oder Herrentag? Feiern Sie bei uns.',t:'Ob mit der Familie oder mit Freunden nach der Tour: Im Biergarten oder im Restaurant finden Sie bei uns Platz. Größere Gruppen bitte vorher anmelden.',b:'Wir sind eine Gruppe und möchten am Vatertag bei Ihnen essen und feiern, wenn möglich auch im Biergarten.'},
+ familie:{n:'eine Familienfeier',s:'Anfrage Familienfeier',h:'Familienfeier geplant? Wir richten sie aus.',t:'Ob Wiedersehen, Zusammenkommen oder ein besonderer Tag: Wir richten die Räume nach Ihren Vorstellungen her und besprechen alle Wünsche persönlich mit Ihnen.',b:'Wir wünschen uns, dass die Räume nach unseren Vorstellungen hergerichtet werden, und besprechen Wünsche zum Essen gern persönlich.'},
+ geburtstag:{n:'eine Geburtstagsfeier',s:'Anfrage Geburtstagsfeier',h:'Geburtstag geplant? Wir haben den Platz.',t:'Feiern Sie Ihren Geburtstag bei uns, im kleinen Kreis oder mit großer Runde. Wir richten die Räume her und beraten Sie gern zu Essen und Getränken.',b:'Wir möchten einen Geburtstag bei Ihnen feiern und freuen uns über Ihre Beratung zu Essen und Getränken.'},
+ hochzeit:{n:'eine Hochzeitsfeier',s:'Anfrage Hochzeitsfeier',h:'Hochzeit geplant? Feiern Sie bei uns.',t:'Für Ihre Hochzeitsfeier haben wir Platz für bis zu 60 Personen. Wir richten die Räume nach Ihren Vorstellungen her und besprechen Menü und Ablauf in Ruhe mit Ihnen.',b:'Wir möchten unsere Hochzeit bei Ihnen feiern und freuen uns über ein Angebot zu Menü, Getränken und Ablauf.'},
+ taufe:{n:'eine Tauffeier',s:'Anfrage Tauffeier',h:'Taufe geplant? Wir feiern mit Ihnen.',t:'Nach der Taufe gemeinsam an einem Tisch: Wir haben Platz für Familie und Paten und stimmen Termin und Ablauf mit Ihnen ab, auf Wunsch auch außerhalb der normalen Öffnungszeiten.',b:'Wir würden gern im Anschluss an die Taufe bei Ihnen feiern. Falls nötig, auch außerhalb der normalen Öffnungszeiten.'},
  kommunion:{n:'eine Kommunionsfeier',s:'Anfrage Kommunionsfeier',h:'Kommunion geplant? Feiern Sie bei uns.',t:'Ein großer Tag für die ganze Familie: Wir haben Platz für Ihre Kommunionsfeier und stimmen Termin und Ablauf mit Ihnen ab, auf Wunsch auch außerhalb der normalen Öffnungszeiten.',b:'Wir würden gern im Anschluss an die Kommunion bei Ihnen feiern. Falls nötig, auch außerhalb der normalen Öffnungszeiten.'},
  konfirmation:{n:'eine Konfirmationsfeier',s:'Anfrage Konfirmationsfeier',h:'Konfirmation geplant? Wir feiern mit.',t:'Für Ihre Konfirmationsfeier bieten wir Raum für Familie und Freunde. Termin und Ablauf stimmen wir gern mit Ihnen ab, auf Wunsch auch außerhalb der Öffnungszeiten.',b:'Wir möchten nach der Konfirmation gemeinsam mit Familie und Freunden bei Ihnen feiern. Falls nötig, auch außerhalb der normalen Öffnungszeiten.'},
- geburtstag:{n:'eine Geburtstagsfeier',s:'Anfrage Geburtstagsfeier',h:'Geburtstag geplant? Wir haben den Platz.',t:'Feiern Sie Ihren Geburtstag bei uns, im kleinen Kreis oder mit großer Runde. Wir richten die Räume her und beraten Sie gern zu Essen und Getränken.',b:'Wir möchten einen Geburtstag bei Ihnen feiern und freuen uns über Ihre Beratung zu Essen und Getränken.'},
+ abschluss:{n:'eine Abschlussfeier',s:'Anfrage Abschlussfeier',h:'Abschluss geschafft? Feiern Sie bei uns.',t:'Abitur, Abschlussprüfung oder Studienende: Wir geben Ihrem Erfolg den passenden Rahmen, im kleinen Kreis oder mit großer Runde. Wünsche zu Essen und Ablauf besprechen wir gern mit Ihnen.',b:'Wir möchten einen bestandenen Abschluss bei Ihnen feiern und freuen uns über Ihre Beratung zu Essen und Getränken.'},
  jubilaeum:{n:'ein Jubiläum',s:'Anfrage Jubiläumsfeier',h:'Jubiläum geplant? Feiern Sie es bei uns.',t:'Runder Geburtstag, Hochzeitstag oder Firmenjubiläum: Wir geben Ihrem Jubiläum den passenden Rahmen und besprechen Ihre Wünsche persönlich mit Ihnen.',b:'Wir möchten ein Jubiläum bei Ihnen feiern und besprechen gern Rahmen, Essen und Ablauf.'},
+ ruhestand:{n:'eine Abschiedsfeier',s:'Anfrage Abschieds- oder Ruhestandsfeier',h:'Abschied oder Ruhestand? Feiern Sie bei uns.',t:'Ein neuer Lebensabschnitt verdient einen schönen Abend: Wir haben Platz für Kollegen, Freunde und Familie und besprechen Ablauf und Essen persönlich mit Ihnen.',b:'Es soll ein Abschied in den Ruhestand gefeiert werden. Wir freuen uns über ein Angebot für Essen und Getränke.'},
  betrieb:{n:'ein Betriebsfest',s:'Anfrage Betriebsfest',h:'Betriebsfest geplant? Wir sind bereit für Ihr Team.',t:'Für Betriebsfeiern haben wir Platz für bis zu 60 Personen. Wir stimmen Termin und Ablauf mit Ihnen ab und sorgen dafür, dass Ihr Team gut versorgt ist.',b:'Wir planen ein Betriebsfest für unser Team und freuen uns über ein Angebot für Essen und Getränke.'},
+ klassentreffen:{n:'ein Klassentreffen',s:'Anfrage Klassentreffen',h:'Klassentreffen geplant? Wir haben den Tisch.',t:'Alte Bekannte, viele Geschichten: Für Ihr Klassentreffen haben wir Platz für größere Runden bis 60 Personen. Bitte melden Sie die Gruppe vorher an.',b:'Wir sind eine größere Gruppe ehemaliger Mitschüler und möchten uns bei Ihnen treffen. Wir freuen uns über einen Terminvorschlag.'},
  trauer:{n:'eine Trauerfeier',s:'Anfrage Trauerfeier',h:'Trauerfeier geplant? Wir sind für Sie da.',t:'Auch im Trauerfall sind wir Ihr Ansprechpartner. Rufen Sie uns gern an. Wir besprechen alles in Ruhe mit Ihnen und richten die Räume würdevoll her.',b:'Wir bitten um Unterstützung bei der Ausrichtung einer Trauerfeier und würden alles Weitere gern in Ruhe mit Ihnen besprechen.'}
 };
 var evMail=$('#ev-mail'),evTags=$$('[data-ev]');
@@ -372,18 +393,49 @@ function setEv(k){
  evTags.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-ev')===k?'true':'false')});
  evMail.href='mailto:'+MAIL+'?subject='+encodeURIComponent(e.s)+'&body='+encodeURIComponent(evBody(e));
 }
+function defEv(){
+ var m=new Date().getMonth();
+ if(m===10||m===11)return 'weihnachten';
+ if(m===2||m===3)return 'ostern';
+ if(m===4)return 'muttertag';
+ return 'familie';
+}
 evTags.forEach(function(b){b.addEventListener('click',function(){setEv(b.getAttribute('data-ev'))})});
-setEv('weihnachten');
+setEv(defEv());
 
 /* ===== Öffnungszeiten: heutigen Tag markieren ===== */
 var today=$('#hours [data-d="'+new Date().getDay()+'"]');
 if(today){today.classList.add('today')}
 
-/* ===== Karte nach Klick ===== */
-var mb=$('#mapbox'),lb=$('#loadmap');
-lb.addEventListener('click',function(){
- mb.innerHTML='<iframe title="Karte: Bei Stavros, Zur Großen Heide 22, Gütersloh" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh&amp;output=embed"></iframe>';
-});
+/* ===== Google-Rezension ===== */
+var RV='https://www.google.com/maps/search/?api=1&query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh';
+if(PLACE_ID){RV='https://search.google.com/local/writereview?placeid='+encodeURIComponent(PLACE_ID)}
+$$('[data-review]').forEach(function(a){a.href=RV});
+  /* ===== Google-Karte: nur mit Einwilligung ===== */
+var CKEY='stavros_karte';
+var mb=$('#mapbox'),mapIdle=mb.innerHTML,cbox=$('#consent');
+function getC(){try{return localStorage.getItem(CKEY)}catch(e){return null}}
+function setC(v){try{localStorage.setItem(CKEY,v)}catch(e){}}
+function loadMap(){
+ if(mb.querySelector('iframe'))return;
+ var f=document.createElement('iframe');
+ f.title='Karte: Bei Stavros, Zur Großen Heide 22, Gütersloh';
+ f.loading='lazy';
+ f.referrerPolicy='no-referrer-when-downgrade';
+ f.setAttribute('allowfullscreen','');
+ f.src='https://www.google.com/maps?q=Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh&output=embed';
+ mb.innerHTML='';
+ mb.appendChild(f);
+}
+function resetMap(){mb.innerHTML=mapIdle}
+mb.addEventListener('click',function(e){if(e.target.closest('#loadmap'))loadMap()});
+$('#c-yes').addEventListener('click',function(){setC('yes');cbox.hidden=true;loadMap()});
+$('#c-no').addEventListener('click',function(){setC('no');cbox.hidden=true;resetMap()});
+$('#c-open').addEventListener('click',function(){cbox.hidden=false});
+(function(){
+ var c=getC();
+ if(c==='yes'){loadMap()}else if(c!=='no'){cbox.hidden=false}
+})();
 
 /* ===== Einblenden beim Scrollen ===== */
 var els=$$('.rv');
@@ -395,4 +447,12 @@ if('IntersectionObserver' in window){
 }else{
  els.forEach(function(el){el.classList.add('in')});
 }
+
+/* ===== Direktlink auf Overlay (z. B. #speisekarte) ===== */
+(function(){
+ var rev={};
+ Object.keys(HASH).forEach(function(k){rev[HASH[k]]=k});
+ var hk=rev[(location.hash||'').slice(1)];
+ if(hk){openDlg(hk,true)}
+})();
 })();
