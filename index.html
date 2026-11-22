@@ -2,7 +2,6 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src https://www.google.com https://maps.google.com; connect-src 'none'; font-src 'none'; media-src 'none'; manifest-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bei Stavros – Griechisches Restaurant in Gütersloh</title>
@@ -18,6 +17,7 @@
 <link rel="stylesheet" href="style.css">
 {"@context":"https://schema.org","@type":"Restaurant","name":"Bei Stavros","servesCuisine":"Griechisch","telephone":"+4952099192683","email":"stavros-stamatis@t-online.de","priceRange":"€€","acceptsReservations":"True","address":{"@type":"PostalAddress","streetAddress":"Zur Großen Heide 22","postalCode":"33335","addressLocality":"Gütersloh","addressCountry":"DE"},"maximumAttendeeCapacity":60,"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"17:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:30","closes":"23:00"}]}
 </script>
+<script src="script.js" defer></script>
 </head>
 <body>
 
@@ -112,6 +112,7 @@
 </div>
 </div>
 </section>
+
 <section id="karte" class="sec-menu">
 <div class="wrap">
 <div class="kicker">Speisekarte</div>
@@ -138,7 +139,6 @@
 </div>
 </div>
 </section>
-
 <section id="feiern">
 <div class="wrap">
 <div class="feier rv">
@@ -254,7 +254,8 @@
 </section>
 
 </main>
-<footer>
+
+  <footer>
 <div class="mea b"></div>
 <div class="wrap">
 <p><b>Bei Stavros</b> · Zur Großen Heide 22 · 33335 Gütersloh</p>
