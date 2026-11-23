@@ -2,7 +2,7 @@
 'use strict';
 document.documentElement.className+=' js';
 var MAIL='stavros-stamatis@t-online.de';
-/* Google-Rezension: Place ID hier eintragen (aus dem Google-Unternehmensprofil). Solange leer, führt der Link auf die Google-Maps-Seite des Restaurants. */
+/* Google-Rezension: Alle Sterne und der Button nutzen den Link in RV (siehe unten). Optional kann hier eine Place ID aus dem Google-Unternehmensprofil eingetragen werden, dann führt der Link direkt zum Bewertungsfenster. */
 var PLACE_ID='';
 function $(s,r){return (r||document).querySelector(s)}
 function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
@@ -195,7 +195,8 @@ var M=[
 ['162','Williams Birne','','2,20'],
 ['163','Maracuja Likör','','2,20']]}
 ];
-  /* ===== Menü: Aufbau ===== */
+
+ /* ===== Menü: Aufbau ===== */
 function priceHtml(p){
  var parts=p.split('/');
  if(parts.length===1&&p.indexOf('=')<0){return '<div class="pr"><b>'+esc(p)+' €</b></div>'}
@@ -363,7 +364,8 @@ document.addEventListener('click',function(e){
  var x=e.target.closest('[data-close]');
  if(x){var d=x.closest('dialog');if(d)d.close()}
 });
-  /* ===== Feier-Kasten ===== */
+
+/* ===== Feier-Kasten ===== */
 var EV={
  weihnachten:{n:'eine Weihnachtsfeier',s:'Anfrage Weihnachtsfeier',h:'Weihnachtsfeier geplant? Jetzt Termin sichern.',t:'Bei uns ist Platz für Ihre Weihnachtsfeier, ob mit dem Team, mit Freunden oder der Familie. Bitte reservieren Sie rechtzeitig. Sonderwünsche besprechen wir gern mit Ihnen.',b:'Wir feiern im Kreis von Kollegen, Freunden oder Familie und freuen uns auf einen schönen Abend. Über Ihre Vorschläge für Essen und Ablauf sprechen wir gern.'},
  ostern:{n:'ein Osteressen',s:'Anfrage Osteressen',h:'Osteressen geplant? Reservieren Sie früh.',t:'Ostern am gedeckten Tisch: Wir haben Platz für Ihr Osteressen mit der ganzen Familie. Die Feiertage sind schnell vergeben, bitte reservieren Sie rechtzeitig. Zeiten und Wünsche besprechen wir gern persönlich.',b:'Wir würden gern an den Ostertagen mit der Familie bei Ihnen essen und freuen uns über Ihre Vorschläge zu Essen und Ablauf.'},
@@ -408,7 +410,7 @@ var today=$('#hours [data-d="'+new Date().getDay()+'"]');
 if(today){today.classList.add('today')}
 
 /* ===== Google-Rezension ===== */
-var RV='https://www.google.com/maps/search/?api=1&query=Bei+Stavros+Zur+Gro%C3%9Fen+Heide+22+33335+G%C3%BCtersloh';
+var RV='https://www.google.com/search?q=bei+stravos&oq=bei+stravos&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIxgnGLECMhQIAhAuGAoYCxivARjHARi6AhiABDIRCAMQLhgKGAsYrwEYxwEYgAQyCwgEEAAYChgLGIAEMgsIBRAAGAoYCxiABDIGCAYQRRg8MgYIBxBFGDwyBggIEEUYPDILCAkQABgKGAsYgAQyCwgKEAAYChgLGIAEMgsICxAAGAoYCxiABDIKCAwQABiABBiiBNIBCDI1NDFqMGo0qAIOsAIB8QVEroAlW0yAR_EFRK6AJVtMgEc&client=ms-android-nothing-terr2-reo3&sourceid=chrome-mobile&source=chrome.ob&ie=UTF-8#sv=CAMS1AIaqAIKEgoDdGJzEgtscmY6ITNzSUFFPQoQCgFxEgtiZWkgc3RhdnJvcwoHCgN1ZG0SABABGg5wdi0vZy8xdGx2bm1teio_CgsvZy8xdGx2bm1tehIMEAEaBggAEAAYADACIhEKC2JlaSBzdGF2cm9zEAIYAkABUgMKAQKJAXBL9mFEwbdzMqMBCgtiZWkgc3RhdnJvc0j-nKmt5oCAgAhaFRAAEAEYABgBIgtiZWkgc3RhdnJvc5IBEGdyZWVrX3Jlc3RhdXJhbnSqAV8KCy9nLzF0a3M1ZjBxCgsvZy8xdGx2bm1tehABKg8iC2JlaSBzdGF2cm9zKAUyHxABIhtGxGPjASFEO0TlOLrtjFjYRAr8SGQ4544vDSIyDxACIgtiZWkgc3RhdnJvcyAmKiMKD2xjbF9sZWdhY3lfdGlsZRIOcHYtL2cvMXRsdm5tbXoYATABGAog_e6w5wU';
 if(PLACE_ID){RV='https://search.google.com/local/writereview?placeid='+encodeURIComponent(PLACE_ID)}
 $$('[data-review]').forEach(function(a){a.href=RV});
 
