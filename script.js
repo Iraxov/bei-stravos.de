@@ -93,10 +93,10 @@ var M=[
 ['58','Gigantes – Aubergine','griechische dicke Bohnen in Tomatensauce, begleitet mit Aubergine, dazu gratinierter Fetakäse, Tomaten und Zwiebeln, ohne Vorspeisensalat','12,00']]},
 {id:'fisch',t:'Fischspezialitäten',a:'blue',i:[
 ['60','Scampis (5 Stk)','mit Frischlauchzwiebeln, Paprika und Tomatensauce','20,00'],
-['61','Calamares paniert aus der Pfanne','mit 3 kleinen Vorspeisen: Tzatziki, Tarama, Skordalia','16,50',1],
-['62','Lachsfilet aus der Pfanne','mit Blattspinat oder Gemüse und griechischen Ofenkartoffeln','18,00',1],
-['63','Großes Schollenfilet aus der Pfanne','mit Blattspinat oder Gemüse und griechischen Ofenkartoffeln','18,00',1],
-['64','Fischplatte Aphrodite','ein großes Schollenfilet, ein Lachsfilet und panierte Calamares mit Blattspinat oder Gemüse und griechischen Ofenkartoffeln','20,50',1]]},
+['61','Calamares paniert aus der Pfanne','mit 3 kleinen Vorspeisen: Tzatziki, Tarama, Skordalia','16,50'],
+['62','Lachsfilet aus der Pfanne','mit Blattspinat oder Gemüse und griechischen Ofenkartoffeln','18,00'],
+['63','Großes Schollenfilet aus der Pfanne','mit Blattspinat oder Gemüse und griechischen Ofenkartoffeln','18,00'],
+['64','Fischplatte Aphrodite','ein großes Schollenfilet, ein Lachsfilet und panierte Calamares mit Blattspinat oder Gemüse und griechischen Ofenkartoffeln','20,50']]},
 {id:'kinder',t:'Für unsere kleinen Gäste',a:'gold',i:[
 ['66','Jason','Gyros mit Pommes','10,00'],
 ['67','Achilles','Souvlaki mit Pommes','10,00'],
@@ -328,7 +328,7 @@ dx.addEventListener('click',function(){setMenu(false)});
 drawer.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
 
-/* ===== Overlays (mit Zurück-Taste) ===== */
+ /* ===== Overlays (mit Zurück-Taste) ===== */
 var dl={menu:$('#d-menu'),gal:$('#d-gal'),imp:$('#d-imp'),dat:$('#d-dat')};
 var HASH={menu:'speisekarte',gal:'galerie',imp:'impressum',dat:'datenschutz'};
 function anyOpen(){return Object.keys(dl).some(function(k){return dl[k].open})}
@@ -409,7 +409,7 @@ setEv(defEv());
 var today=$('#hours [data-d="'+new Date().getDay()+'"]');
 if(today){today.classList.add('today')}
 
-/* ===== Google-Rezension ===== */
+ /* ===== Google-Rezension ===== */
 var RV='https://www.google.com/search?q=bei+stravos&oq=bei+stravos&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIxgnGLECMhQIAhAuGAoYCxivARjHARi6AhiABDIRCAMQLhgKGAsYrwEYxwEYgAQyCwgEEAAYChgLGIAEMgsIBRAAGAoYCxiABDIGCAYQRRg8MgYIBxBFGDwyBggIEEUYPDILCAkQABgKGAsYgAQyCwgKEAAYChgLGIAEMgsICxAAGAoYCxiABDIKCAwQABiABBiiBNIBCDI1NDFqMGo0qAIOsAIB8QVEroAlW0yAR_EFRK6AJVtMgEc&client=ms-android-nothing-terr2-reo3&sourceid=chrome-mobile&source=chrome.ob&ie=UTF-8#sv=CAMS1AIaqAIKEgoDdGJzEgtscmY6ITNzSUFFPQoQCgFxEgtiZWkgc3RhdnJvcwoHCgN1ZG0SABABGg5wdi0vZy8xdGx2bm1teio_CgsvZy8xdGx2bm1tehIMEAEaBggAEAAYADACIhEKC2JlaSBzdGF2cm9zEAIYAkABUgMKAQKJAXBL9mFEwbdzMqMBCgtiZWkgc3RhdnJvc0j-nKmt5oCAgAhaFRAAEAEYABgBIgtiZWkgc3RhdnJvc5IBEGdyZWVrX3Jlc3RhdXJhbnSqAV8KCy9nLzF0a3M1ZjBxCgsvZy8xdGx2bm1tehABKg8iC2JlaSBzdGF2cm9zKAUyHxABIhtGxGPjASFEO0TlOLrtjFjYRAr8SGQ4544vDSIyDxACIgtiZWkgc3RhdnJvcyAmKiMKD2xjbF9sZWdhY3lfdGlsZRIOcHYtL2cvMXRsdm5tbXoYATABGAog_e6w5wU';
 if(PLACE_ID){RV='https://search.google.com/local/writereview?placeid='+encodeURIComponent(PLACE_ID)}
 $$('[data-review]').forEach(function(a){a.href=RV});
